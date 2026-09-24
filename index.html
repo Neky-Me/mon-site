@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mon Chez moi</title>
+
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: white;
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           NAVIGATION
+        ========================================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px 7%;
+
+            background: rgba(5, 5, 5, 0.85);
+
+            backdrop-filter: blur(10px);
+
+            border-bottom:
+                1px solid
+                rgba(255, 255, 255, 0.08);
+        }
+
+
+        .logo {
+            font-size: 24px;
+
+            font-weight: bold;
+
+            color: white;
+
+            text-decoration: none;
+        }
+
+
+        .logo span {
+            color: #60a5fa;
+        }
+
+
+        nav {
+            display: flex;
+
+            gap: 30px;
+        }
+
+
+        nav a {
+            color: #d1d5db;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition:
+                color 0.25s ease;
+        }
+
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+
+        nav a.active {
+            color: #60a5fa;
+        }
+
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            padding:
+                120px 8% 70px;
+
+            position: relative;
+
+            overflow: hidden;
+
+
+            background-image:
+
+                linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, 0.94) 0%,
+                    rgba(0, 0, 0, 0.78) 38%,
+                    rgba(0, 0, 0, 0.40) 70%,
+                    rgba(0, 0, 0, 0.15) 100%
+                ),
+
+                url("./photo.png");
+
+
+            background-size: cover;
+
+            background-position: center;
+
+
+            background-repeat: no-repeat;
+        }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            pointer-events: none;
+
+
+            background:
+
+                linear-gradient(
+                    to bottom,
+                    transparent 65%,
+                    #080808 100%
+                );
+        }
+
+
+        .hero-content {
+
+            max-width: 700px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .petit-titre {
+
+            color: #60a5fa;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+
+        .hero h1 {
+
+            font-size:
+                clamp(48px, 7vw, 90px);
+
+            line-height: 1;
+
+            margin-bottom: 25px;
+        }
+
+
+        .hero h1 span {
+
+            color: #60a5fa;
+        }
+
+
+        .hero p {
+
+            color: #d1d5db;
+
+            font-size: 20px;
+
+            max-width: 600px;
+
+            margin-bottom: 35px;
+        }
+
+
+
+        /* =========================================
+           BOUTONS
+        ========================================= */
+
+        .boutons {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+        }
+
+
+        .bouton {
+
+            display: inline-block;
+
+            padding:
+                14px 24px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+
+        .bouton-principal {
+
+            background: #2563eb;
+
+            color: white;
+        }
+
+
+        .bouton-principal:hover {
+
+            background: #3b82f6;
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .bouton-secondaire {
+
+            color: white;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.25);
+
+            background:
+                rgba(255, 255, 255, 0.05);
+        }
+
+
+        .bouton-secondaire:hover {
+
+            border-color:
+                #60a5fa;
+
+            transform:
+                translateY(-3px);
+        }
+
+
+
+        /* =========================================
+           SECTIONS
+        ========================================= */
+
+        section {
+
+            padding:
+                90px 8%;
+        }
+
+
+        .titre-section {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+
+        .titre-section .petit-titre {
+
+            margin-bottom: 8px;
+        }
+
+
+        .titre-section h2 {
+
+            font-size: 40px;
+        }
+
+
+        .titre-section p {
+
+            color: #9ca3af;
+
+            max-width: 600px;
+
+            margin:
+                10px auto 0;
+        }
+
+
+
+        /* =========================================
+           A PROPOS
+        ========================================= */
+
+        .apropos {
+
+            background: #0b0b0b;
+        }
+
+
+        .apropos-contenu {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                350px 1fr;
+
+            gap: 60px;
+
+            align-items: center;
+        }
+
+
+        .photo-container {
+
+            position: relative;
+        }
+
+
+        .photo-container img {
+
+            display: block;
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1;
+
+            object-fit: cover;
+
+            border-radius: 25px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.15);
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, 0.6);
+        }
+
+
+        .photo-container::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 100%;
+
+            height: 100%;
+
+            border:
+                2px solid
+                #2563eb;
+
+            border-radius: 25px;
+
+            top: 15px;
+
+            left: 15px;
+
+            z-index: 0;
+
+            opacity: 0.6;
+        }
+
+
+        .photo-container img {
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        .apropos-texte h3 {
+
+            font-size: 32px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .apropos-texte h3 span {
+
+            color: #60a5fa;
+        }
+
+
+        .apropos-texte p {
+
+            color: #b8bec8;
+
+            margin-bottom: 15px;
+
+            font-size: 17px;
+        }
+
+
+
+        /* =========================================
+           PROJET
+        ========================================= */
+
+        .projet {
+
+            background: #080808;
+        }
+
+
+        .projet-card {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            padding: 45px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #111827,
+                    #0b0b0b
+                );
+
+            border:
+                1px solid
+                #1f2937;
+
+            text-align: center;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+
+        .projet-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                #2563eb;
+        }
+
+
+        .projet-icon {
+
+            font-size: 50px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .projet-card h3 {
+
+            font-size: 30px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .projet-card p {
+
+            color: #9ca3af;
+
+            max-width: 650px;
+
+            margin:
+                0 auto 25px;
+        }
+
+
+
+        /* =========================================
+           COMPETENCES
+        ========================================= */
+
+        .competences {
+
+            background: #0b0b0b;
+        }
+
+
+        .competences-container {
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .competence {
+
+            padding: 30px;
+
+            background: #111111;
+
+            border:
+                1px solid
+                #222;
+
+            border-radius: 17px;
+
+            text-align: center;
+
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+
+        .competence:hover {
+
+            transform:
+                translateY(-6px);
+
+            border-color:
+                #2563eb;
+        }
+
+
+        .competence-icon {
+
+            font-size: 38px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .competence h3 {
+
+            margin-bottom: 8px;
+        }
+
+
+        .competence p {
+
+            color: #9ca3af;
+        }
+
+
+
+        /* =========================================
+           CONTACT
+        ========================================= */
+
+        .contact {
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #080808
+                );
+        }
+
+
+        .contact p {
+
+            color: #9ca3af;
+
+            margin:
+                10px auto 25px;
+        }
+
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            background: #050505;
+
+            border-top:
+                1px solid
+                #1f2937;
+
+            color: #6b7280;
+        }
+
+
+        footer strong {
+
+            color: #60a5fa;
+        }
+
+
+
+        /* =========================================
+           TELEPHONE
+        ========================================= */
+
+        @media (max-width: 800px) {
+
+
+            header {
+
+                padding:
+                    18px 5%;
+            }
+
+
+            nav {
+
+                gap: 15px;
+            }
+
+
+            nav a {
+
+                font-size: 14px;
+            }
+
+
+            .hero {
+
+                background-position:
+                    60% center;
+            }
+
+
+            .apropos-contenu {
+
+                grid-template-columns: 1fr;
+
+                text-align: center;
+            }
+
+
+            .photo-container {
+
+                width:
+                    min(320px, 80%);
+
+                margin: auto;
+            }
+
+
+            .competences-container {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+
+        @media (max-width: 550px) {
+
+
+            header {
+
+                position: relative;
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            nav {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .hero {
+
+                min-height: 90vh;
+
+                padding:
+                    80px 7% 60px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 50px;
+            }
+
+
+            .hero p {
+
+                font-size: 17px;
+            }
+
+
+            section {
+
+                padding:
+                    65px 7%;
+            }
+
+
+            .titre-section h2 {
+
+                font-size: 32px;
+            }
+
+
+            .projet-card {
+
+                padding:
+                    30px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVIGATION
+    ========================================== -->
+
+    <header>
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Mon <span>Chez moi</span>
+        </a>
+
+
+        <nav>
+
+            <a
+                href="index.html"
+                class="active"
+            >
+                Accueil
+            </a>
+
+            <a href="#apropos">
+                À propos
+            </a>
+
+            <a href="complex.html">
+                Calculs complexes
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================================
+         ACCUEIL
+    ========================================== -->
+
+    <main>
+
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="petit-titre">
+                    Bienvenue sur mon site
+                </div>
+
+
+                <h1>
+
+                    Mon petit
+                    <br>
+
+                    <span>
+                        univers web.
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    Je découvre le développement web,
+                    j'apprends à créer des sites et
+                    je construis petit à petit mes
+                    premiers projets.
+
+                </p>
+
+
+                <div class="boutons">
+
+                    <a
+                        href="#apropos"
+                        class="bouton bouton-principal"
+                    >
+                        Découvrir mon site
+                    </a>
+
+
+                    <a
+                        href="complex.html"
+                        class="bouton bouton-secondaire"
+                    >
+                        Voir mes calculs →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             A PROPOS
+        ========================================== -->
+
+        <section
+            class="apropos"
+            id="apropos"
+        >
+
+
+            <div class="titre-section">
+
+                <div class="petit-titre">
+                    À propos
+                </div>
+
+
+                <h2>
+                    Qui suis-je ?
+                </h2>
+
+
+                <p>
+                    Quelques mots sur moi et mon apprentissage.
+                </p>
+
+            </div>
+
+
+
+            <div class="apropos-contenu">
+
+
+                <div class="photo-container">
+
+                    <img
+                        src="./photo.png"
+                        alt="Ma photo"
+                    >
+
+                </div>
+
+
+
+                <div class="apropos-texte">
+
+                    <h3>
+
+                        Je découvre le
+
+                        <span>
+                            développement web.
+                        </span>
+
+                    </h3>
+
+
+                    <p>
+
+                        Je suis en train d'apprendre à créer
+                        des sites internet avec HTML et CSS.
+
+                    </p>
+
+
+                    <p>
+
+                        Ce site est mon espace personnel pour
+                        présenter mes premiers projets,
+                        mes expériences et ce que j'apprends.
+
+                    </p>
+
+
+                    <p>
+
+                        Je souhaite continuer à progresser
+                        et rendre mes sites de plus en plus
+                        beaux, interactifs et modernes.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             PROJET
+        ========================================== -->
+
+        <section class="projet">
+
+
+            <div class="titre-section">
+
+                <div class="petit-titre">
+                    Mon projet
+                </div>
+
+
+                <h2>
+                    Mon premier site
+                </h2>
+
+            </div>
+
+
+
+            <div class="projet-card">
+
+
+                <div class="projet-icon">
+                    💻
+                </div>
+
+
+                <h3>
+                    Apprendre en créant
+                </h3>
+
+
+                <p>
+
+                    J'ai créé ce site pour découvrir
+                    le développement web et apprendre
+                    progressivement HTML, CSS et JavaScript.
+
+                </p>
+
+
+                <a
+                    href="complex.html"
+                    class="bouton bouton-principal"
+                >
+                    Découvrir mon projet →
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             COMPETENCES
+        ========================================== -->
+
+        <section class="competences">
+
+
+            <div class="titre-section">
+
+                <div class="petit-titre">
+                    Ce que j'apprends
+                </div>
+
+
+                <h2>
+                    Mes compétences
+                </h2>
+
+
+                <p>
+                    Les domaines dans lesquels je progresse.
+                </p>
+
+            </div>
+
+
+
+            <div class="competences-container">
+
+
+                <div class="competence">
+
+                    <div class="competence-icon">
+                        🌐
+                    </div>
+
+
+                    <h3>
+                        HTML
+                    </h3>
+
+
+                    <p>
+                        Créer la structure
+                        des pages web.
+                    </p>
+
+                </div>
+
+
+
+                <div class="competence">
+
+                    <div class="competence-icon">
+                        🎨
+                    </div>
+
+
+                    <h3>
+                        CSS
+                    </h3>
+
+
+                    <p>
+                        Donner du style,
+                        des couleurs et
+                        des animations.
+                    </p>
+
+                </div>
+
+
+
+                <div class="competence">
+
+                    <div class="competence-icon">
+                        💡
+                    </div>
+
+
+                    <h3>
+                        Créativité
+                    </h3>
+
+
+                    <p>
+                        Imaginer et améliorer
+                        mes propres projets.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             CONTACT
+        ========================================== -->
+
+        <section class="contact">
+
+
+            <div class="titre-section">
+
+                <div class="petit-titre">
+                    Une question ?
+                </div>
+
+
+                <h2>
+                    Me contacter
+                </h2>
+
+
+                <p>
+
+                    Tu peux retrouver ma page de contact
+                    pour m'envoyer un message.
+
+                </p>
+
+            </div>
+
+
+            <a
+                href="contact.html"
+                class="bouton bouton-principal"
+            >
+                Aller à la page Contact →
+            </a>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+        <p>
+
+            Mon premier site —
+
+            <strong>
+                2026
+            </strong>
+
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

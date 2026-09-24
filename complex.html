@@ -1,0 +1,3018 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Le théorème fondamental de l'algèbre</title>
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #e2e8f0;
+            background:
+                radial-gradient(
+                    circle at 50% -20%,
+                    #172554 0%,
+                    #07101f 35%,
+                    #020617 75%
+                );
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(37, 99, 235, 0.07),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(124, 58, 237, 0.06),
+                    transparent 28%
+                );
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            text-align: center;
+            padding: 55px 20px 35px;
+
+            background: rgba(2, 6, 23, 0.85);
+
+            border-bottom:
+                1px solid
+                rgba(59, 130, 246, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+
+            font-size:
+                clamp(28px, 5vw, 52px);
+
+            color: #60a5fa;
+
+            letter-spacing: -1px;
+        }
+
+        header p {
+            color: #94a3b8;
+            margin: 10px 0 25px;
+            font-size: 17px;
+        }
+
+
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+
+            padding: 8px 15px;
+
+            border-radius: 20px;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        nav a:hover {
+            color: white;
+
+            background:
+                rgba(37, 99, 235, 0.15);
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        main {
+            width: min(1100px, 92%);
+            margin: 35px auto 70px;
+        }
+
+
+        /* =========================================================
+           SECTIONS
+        ========================================================= */
+
+        section {
+            margin-bottom: 25px;
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(15, 23, 42, 0.9);
+
+            border:
+                1px solid
+                rgba(71, 85, 105, 0.45);
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.2);
+
+            transition:
+                border-color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        section:hover {
+            border-color:
+                rgba(59, 130, 246, 0.35);
+        }
+
+        section h2 {
+            margin-top: 0;
+            color: #f8fafc;
+            font-size: 27px;
+        }
+
+        section h3 {
+            color: #93c5fd;
+        }
+
+        p {
+            color: #cbd5e1;
+        }
+
+        strong {
+            color: white;
+        }
+
+
+        /* =========================================================
+           INTRO
+        ========================================================= */
+
+        .hero {
+            text-align: center;
+            padding: 40px 25px;
+        }
+
+        .hero-symbol {
+            font-size: 58px;
+            color: #60a5fa;
+            margin-bottom: 5px;
+        }
+
+        .hero h2 {
+            color: #60a5fa;
+            font-size: 31px;
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin: 10px auto;
+        }
+
+
+        /* =========================================================
+           FORMULES
+        ========================================================= */
+
+        .formule {
+            text-align: center;
+
+            padding: 18px;
+
+            margin: 20px 0;
+
+            border-radius: 12px;
+
+            background: #020617;
+
+            border:
+                1px solid
+                #1e3a5f;
+
+            color: #93c5fd;
+
+            font-size: 24px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================================
+           CALCULATEUR
+        ========================================================= */
+
+        .calculateur {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 20px;
+        }
+
+        .nombre {
+            padding: 23px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111c35,
+                    #08101f
+                );
+
+            border:
+                1px solid
+                #263a5c;
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .nombre:hover {
+            transform:
+                translateY(-3px);
+
+            border-color:
+                #3b82f6;
+        }
+
+        .nombre h3 {
+            margin-top: 0;
+            color: #60a5fa;
+        }
+
+        .champ {
+            margin-top: 17px;
+        }
+
+        .champ label {
+            display: block;
+            margin-bottom: 6px;
+            color: #cbd5e1;
+        }
+
+        .champ input {
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border-radius: 9px;
+
+            border:
+                1px solid
+                #334155;
+
+            background:
+                #020617;
+
+            color: white;
+
+            font-size: 17px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .champ input:focus {
+            border-color:
+                #3b82f6;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(59, 130, 246, 0.12);
+        }
+
+
+        /* =========================================================
+           Z1 / Z2
+        ========================================================= */
+
+        .complexes {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+        .complexe-card {
+            text-align: center;
+
+            padding: 18px;
+
+            background:
+                #020617;
+
+            border:
+                1px solid
+                #1e3a5f;
+
+            border-radius: 13px;
+        }
+
+        .complexe-label {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .complexe-value {
+            font-size: 26px;
+            font-weight: bold;
+            color: #60a5fa;
+            margin-top: 5px;
+
+            transition:
+                color 0.15s ease;
+        }
+
+
+        /* =========================================================
+           BOUTONS
+        ========================================================= */
+
+        .boutons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin: 25px 0;
+        }
+
+        button {
+            border: none;
+
+            padding:
+                11px 19px;
+
+            border-radius:
+                10px;
+
+            background:
+                #2563eb;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                transform 0.15s ease,
+                box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            background:
+                #3b82f6;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 7px 18px
+                rgba(37, 99, 235, 0.25);
+        }
+
+        button:active {
+            transform:
+                scale(0.96);
+        }
+
+
+        /* =========================================================
+           RESULTAT
+        ========================================================= */
+
+        .resultat {
+            text-align: center;
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #102a4c,
+                    #0b1830
+                );
+
+            border:
+                1px solid
+                #2563eb;
+        }
+
+        .resultat-label {
+            color: #93c5fd;
+        }
+
+        #resultat {
+            font-size: 29px;
+            font-weight: bold;
+            color: white;
+            margin-top: 3px;
+        }
+
+
+        /* =========================================================
+           MODULE / ARGUMENT
+        ========================================================= */
+
+        .mesures {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+
+            margin-top: 20px;
+        }
+
+        .mesure {
+            padding: 18px;
+
+            text-align: center;
+
+            background:
+                #020617;
+
+            border:
+                1px solid
+                #1e293b;
+
+            border-radius:
+                12px;
+        }
+
+        .mesure .nom {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .mesure .valeur {
+            font-size: 23px;
+            font-weight: bold;
+
+            color: #a78bfa;
+
+            margin-top: 4px;
+        }
+
+
+        /* =========================================================
+           PLAN COMPLEXE
+        ========================================================= */
+
+        .plan-container {
+            display: flex;
+            justify-content: center;
+
+            margin-top: 20px;
+        }
+
+        canvas {
+            display: block;
+
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+
+            background:
+                #020617;
+
+            border:
+                1px solid
+                #263a5c;
+
+            border-radius:
+                14px;
+
+            cursor:
+                grab;
+        }
+
+        canvas:active {
+            cursor:
+                grabbing;
+        }
+
+        .plan-info {
+            text-align: center;
+
+            color:
+                #64748b;
+
+            font-size:
+                13px;
+
+            margin-top:
+                10px;
+        }
+
+        .legende {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 20px;
+
+            margin-top: 13px;
+        }
+
+        .legende-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            color: #cbd5e1;
+        }
+
+        .point {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+        }
+
+        .point-bleu {
+            background: #3b82f6;
+        }
+
+        .point-violet {
+            background: #a855f7;
+        }
+
+        .point-vert {
+            background: #22c55e;
+        }
+
+
+        /* =========================================================
+           DEFINITION
+        ========================================================= */
+
+        .definition {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .definition-card {
+            padding: 20px;
+
+            background:
+                #020617;
+
+            border:
+                1px solid
+                #1e293b;
+
+            border-radius:
+                12px;
+        }
+
+
+        /* =========================================================
+           OPERATIONS
+        ========================================================= */
+
+        .exemples {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .exemple {
+            padding: 20px;
+
+            background:
+                #020617;
+
+            border:
+                1px solid
+                #1e293b;
+
+            border-radius:
+                12px;
+        }
+
+        .exemple h3 {
+            margin-top: 0;
+        }
+
+        .calcul {
+            color: white;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================================
+           THEOREME
+        ========================================================= */
+
+        .theoreme {
+            text-align: center;
+
+            padding: 28px;
+
+            margin: 20px 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #172554,
+                    #0f172a
+                );
+
+            border:
+                1px solid
+                #2563eb;
+
+            border-radius:
+                15px;
+        }
+
+        .theoreme .grand {
+            font-size: 21px;
+            color: #dbeafe;
+        }
+
+
+        /* =========================================================
+           ETAPES
+        ========================================================= */
+
+        .etapes {
+            display: grid;
+            gap: 12px;
+        }
+
+        .etape {
+            display: flex;
+            gap: 17px;
+
+            padding: 17px;
+
+            background:
+                #020617;
+
+            border:
+                1px solid
+                #1e293b;
+
+            border-radius:
+                11px;
+        }
+
+        .numero {
+            min-width: 37px;
+            height: 37px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                #2563eb;
+
+            color: white;
+            font-weight: bold;
+        }
+
+        .etape h3 {
+            margin: 0 0 3px;
+        }
+
+        .etape p {
+            margin: 0;
+        }
+
+
+        /* =========================================================
+           A RETENIR
+        ========================================================= */
+
+        .retenir {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 11px;
+        }
+
+        .retenir-item {
+            padding: 15px;
+
+            background:
+                #020617;
+
+            border-left:
+                4px solid
+                #3b82f6;
+
+            border-radius:
+                7px;
+
+            color:
+                #cbd5e1;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            text-align: center;
+
+            padding: 28px;
+
+            color: #64748b;
+
+            border-top:
+                1px solid
+                #1e293b;
+
+            background:
+                #020617;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 800px) {
+
+            .mesures {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            main {
+                width: 94%;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            .calculateur,
+            .complexes,
+            .definition,
+            .exemples,
+            .retenir {
+                grid-template-columns: 1fr;
+            }
+
+            .mesures {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+
+            .hero h2 {
+                font-size: 25px;
+            }
+
+            .formule {
+                font-size: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+    <h1>
+        Le théorème fondamental de l'algèbre
+    </h1>
+
+    <p>
+        Nombres complexes • Calculs • Géométrie
+    </p>
+
+    <nav>
+
+        <a href="index.html">
+            Accueil
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+        <a href="complex.html">
+            Calcul complexe
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =========================================================
+     INTRODUCTION
+========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-symbol">
+        ∑
+    </div>
+
+    <h2>
+        Bienvenue dans le monde des nombres complexes
+    </h2>
+
+    <p>
+        Les nombres complexes permettent de résoudre
+        des équations qui n'ont parfois aucune solution
+        parmi les nombres réels.
+    </p>
+
+    <p>
+        Explore leurs calculs, leur géométrie
+        et le théorème fondamental de l'algèbre.
+    </p>
+
+</section>
+
+
+
+<!-- =========================================================
+     CALCULATEUR
+========================================================= -->
+
+<section>
+
+    <h2>
+        🧮 Calculateur de nombres complexes
+    </h2>
+
+    <p>
+        Un nombre complexe s'écrit sous la forme :
+    </p>
+
+    <div class="formule">
+        z = a + bi
+    </div>
+
+
+    <div class="calculateur">
+
+
+        <!-- Z1 -->
+
+        <div class="nombre">
+
+            <h3>
+                🔵 Premier nombre — z₁
+            </h3>
+
+            <div class="champ">
+
+                <label>
+                    Partie réelle — a
+                </label>
+
+                <input
+                    id="a"
+                    type="number"
+                    value="0"
+                    step="any"
+                >
+
+            </div>
+
+            <div class="champ">
+
+                <label>
+                    Partie imaginaire — b
+                </label>
+
+                <input
+                    id="b"
+                    type="number"
+                    value="0"
+                    step="any"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Z2 -->
+
+        <div class="nombre">
+
+            <h3>
+                🟣 Deuxième nombre — z₂
+            </h3>
+
+            <div class="champ">
+
+                <label>
+                    Partie réelle — c
+                </label>
+
+                <input
+                    id="c"
+                    type="number"
+                    value="0"
+                    step="any"
+                >
+
+            </div>
+
+            <div class="champ">
+
+                <label>
+                    Partie imaginaire — d
+                </label>
+
+                <input
+                    id="d"
+                    type="number"
+                    value="0"
+                    step="any"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- AFFICHAGE Z1 / Z2 -->
+
+    <div class="complexes">
+
+        <div class="complexe-card">
+
+            <div class="complexe-label">
+                Premier complexe
+            </div>
+
+            <div
+                id="z1"
+                class="complexe-value"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="complexe-card">
+
+            <div class="complexe-label">
+                Deuxième complexe
+            </div>
+
+            <div
+                id="z2"
+                class="complexe-value"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- BOUTONS -->
+
+    <div class="boutons">
+
+        <button onclick="calculer('+')">
+            ➕ Addition
+        </button>
+
+        <button onclick="calculer('-')">
+            ➖ Soustraction
+        </button>
+
+        <button onclick="calculer('*')">
+            ✖️ Multiplication
+        </button>
+
+        <button onclick="calculer('/')">
+            ➗ Division
+        </button>
+
+    </div>
+
+
+
+    <!-- RESULTAT -->
+
+    <div class="resultat">
+
+        <div class="resultat-label">
+            Résultat
+        </div>
+
+        <div id="resultat">
+            0
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MODULE ET ARGUMENT
+========================================================= -->
+
+<section>
+
+    <h2>
+        📐 Module et argument
+    </h2>
+
+    <p>
+        Un nombre complexe peut être décrit
+        grâce à sa distance par rapport à l'origine
+        et grâce à son angle.
+    </p>
+
+    <div class="formule">
+        |z| = √(a² + b²)
+    </div>
+
+
+    <div class="mesures">
+
+
+        <div class="mesure">
+
+            <div class="nom">
+                Module de z₁
+            </div>
+
+            <div
+                id="module1"
+                class="valeur"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="mesure">
+
+            <div class="nom">
+                Argument de z₁
+            </div>
+
+            <div
+                id="argument1"
+                class="valeur"
+            >
+                0°
+            </div>
+
+        </div>
+
+
+        <div class="mesure">
+
+            <div class="nom">
+                Module de z₂
+            </div>
+
+            <div
+                id="module2"
+                class="valeur"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="mesure">
+
+            <div class="nom">
+                Argument de z₂
+            </div>
+
+            <div
+                id="argument2"
+                class="valeur"
+            >
+                0°
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <h3>
+        🧠 En langage simple
+    </h3>
+
+    <p>
+        Le <strong>module</strong> représente la distance
+        entre le point et l'origine.
+    </p>
+
+    <p>
+        L'<strong>argument</strong> représente l'angle
+        entre l'axe réel positif et le nombre complexe.
+    </p>
+
+</section>
+
+
+
+<!-- =========================================================
+     PLAN COMPLEXE
+========================================================= -->
+
+<section>
+
+    <h2>
+        🗺️ Le plan complexe
+    </h2>
+
+    <p>
+        Chaque nombre complexe peut être représenté
+        comme un point dans un plan.
+    </p>
+
+    <div class="plan-container">
+
+        <canvas
+            id="plan"
+            width="700"
+            height="500"
+        ></canvas>
+
+    </div>
+
+    <div class="plan-info">
+        🖱️ Molette : zoom • Clic + déplacement : déplacer le plan
+    </div>
+
+
+    <div class="legende">
+
+        <div class="legende-item">
+
+            <span class="point point-bleu"></span>
+
+            z₁
+
+        </div>
+
+        <div class="legende-item">
+
+            <span class="point point-violet"></span>
+
+            z₂
+
+        </div>
+
+        <div class="legende-item">
+
+            <span class="point point-vert"></span>
+
+            Résultat
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     COMPRENDRE
+========================================================= -->
+
+<section>
+
+    <h2>
+        📚 Comprendre un nombre complexe
+    </h2>
+
+    <p>
+        Prenons par exemple :
+    </p>
+
+    <div class="formule">
+        z = 3 + 2i
+    </div>
+
+
+    <div class="definition">
+
+        <div class="definition-card">
+
+            <h3>
+                🔵 3
+            </h3>
+
+            <p>
+                C'est la partie réelle.
+                Elle correspond à la position
+                horizontale du point.
+            </p>
+
+        </div>
+
+
+        <div class="definition-card">
+
+            <h3>
+                🟣 2
+            </h3>
+
+            <p>
+                C'est la partie imaginaire.
+                Elle correspond à la position
+                verticale du point.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <h3>
+        Et le fameux i ?
+    </h3>
+
+    <p>
+        On définit le nombre imaginaire
+        <strong>i</strong> par :
+    </p>
+
+    <div class="formule">
+        i² = −1
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     OPERATIONS
+========================================================= -->
+
+<section>
+
+    <h2>
+        ⚡ Les opérations avec tes nombres
+    </h2>
+
+
+    <div class="exemples">
+
+
+        <div class="exemple">
+
+            <h3>
+                ➕ Addition
+            </h3>
+
+            <div
+                id="addition"
+                class="calcul"
+            >
+                z₁ + z₂ = 0
+            </div>
+
+            <p>
+                On additionne les parties réelles
+                entre elles et les parties imaginaires
+                entre elles.
+            </p>
+
+        </div>
+
+
+        <div class="exemple">
+
+            <h3>
+                ➖ Soustraction
+            </h3>
+
+            <div
+                id="soustraction"
+                class="calcul"
+            >
+                z₁ − z₂ = 0
+            </div>
+
+            <p>
+                On soustrait les deux parties
+                séparément.
+            </p>
+
+        </div>
+
+
+        <div class="exemple">
+
+            <h3>
+                ✖️ Multiplication
+            </h3>
+
+            <div
+                id="multiplication"
+                class="calcul"
+            >
+                z₁ × z₂ = 0
+            </div>
+
+            <p>
+                On développe puis on utilise
+                la relation i² = −1.
+            </p>
+
+        </div>
+
+
+        <div class="exemple">
+
+            <h3>
+                ➗ Division
+            </h3>
+
+            <div
+                id="division"
+                class="calcul"
+            >
+                z₁ ÷ z₂ = impossible
+            </div>
+
+            <p>
+                Le deuxième nombre ne doit pas
+                être égal à zéro.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     THEOREME
+========================================================= -->
+
+<section>
+
+    <h2>
+        📖 Le théorème fondamental de l'algèbre
+    </h2>
+
+    <p>
+        Le théorème fondamental de l'algèbre est
+        l'un des résultats essentiels concernant
+        les polynômes.
+    </p>
+
+
+    <div class="theoreme">
+
+        <p class="grand">
+
+            <strong>
+                Tout polynôme non constant possède
+                au moins une racine complexe.
+            </strong>
+
+        </p>
+
+    </div>
+
+
+    <h3>
+        Exemple : x² + 1
+    </h3>
+
+    <div class="formule">
+        x² + 1 = 0
+    </div>
+
+    <p>
+        Dans les nombres réels, cette équation
+        n'a pas de solution.
+    </p>
+
+    <p>
+        Pourtant :
+    </p>
+
+    <div class="formule">
+
+        x² = −1
+
+        <br><br>
+
+        x = i&nbsp;&nbsp;ou&nbsp;&nbsp;x = −i
+
+    </div>
+
+    <p>
+        Les nombres complexes permettent donc
+        de trouver ces solutions.
+    </p>
+
+</section>
+
+
+
+<!-- =========================================================
+     EXPLICATION SIMPLE
+========================================================= -->
+
+<section>
+
+    <h2>
+        💡 Le théorème en 3 étapes
+    </h2>
+
+
+    <div class="etapes">
+
+
+        <div class="etape">
+
+            <div class="numero">
+                1
+            </div>
+
+            <div>
+
+                <h3>
+                    On prend un polynôme
+                </h3>
+
+                <p>
+                    Par exemple :
+                    x² + 1.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="etape">
+
+            <div class="numero">
+                2
+            </div>
+
+            <div>
+
+                <h3>
+                    On cherche ses racines
+                </h3>
+
+                <p>
+                    Une racine est une valeur
+                    de x qui rend le polynôme égal à zéro.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="etape">
+
+            <div class="numero">
+                3
+            </div>
+
+            <div>
+
+                <h3>
+                    Les complexes complètent les réels
+                </h3>
+
+                <p>
+                    Même lorsqu'une équation n'a pas
+                    de solution réelle, elle possède
+                    des solutions complexes.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     A RETENIR
+========================================================= -->
+
+<section>
+
+    <h2>
+        🎯 À retenir
+    </h2>
+
+
+    <div class="retenir">
+
+        <div class="retenir-item">
+            Un complexe s'écrit
+            <strong>a + bi</strong>.
+        </div>
+
+        <div class="retenir-item">
+            <strong>i² = −1</strong>.
+        </div>
+
+        <div class="retenir-item">
+            Le module correspond à une distance.
+        </div>
+
+        <div class="retenir-item">
+            L'argument correspond à un angle.
+        </div>
+
+        <div class="retenir-item">
+            Les complexes peuvent être représentés
+            dans un plan.
+        </div>
+
+        <div class="retenir-item">
+            Tout polynôme non constant possède
+            au moins une racine complexe.
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <p>
+        Mon premier site — 2026
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+const inputA =
+    document.getElementById("a");
+
+const inputB =
+    document.getElementById("b");
+
+const inputC =
+    document.getElementById("c");
+
+const inputD =
+    document.getElementById("d");
+
+const canvas =
+    document.getElementById("plan");
+
+const ctx =
+    canvas.getContext("2d");
+
+
+let dernierResultat = null;
+
+
+/*
+    Ces variables permettent de déplacer
+    et zoomer le plan.
+*/
+
+let zoom = 1;
+
+let offsetX = 0;
+
+let offsetY = 0;
+
+let sourisDown = false;
+
+let ancienneSourisX = 0;
+
+let ancienneSourisY = 0;
+
+
+/*
+    On évite de redessiner inutilement
+    le canvas plusieurs fois de suite.
+*/
+
+let framePlan = null;
+
+
+/* =========================================================
+   OUTILS
+========================================================= */
+
+function nombres() {
+
+    return {
+
+        a:
+            parseFloat(inputA.value) || 0,
+
+        b:
+            parseFloat(inputB.value) || 0,
+
+        c:
+            parseFloat(inputC.value) || 0,
+
+        d:
+            parseFloat(inputD.value) || 0
+
+    };
+
+}
+
+
+function arrondir(nombre) {
+
+    if (
+        Math.abs(
+            nombre - Math.round(nombre)
+        ) < 0.000001
+    ) {
+
+        return Math.round(nombre);
+
+    }
+
+    return Number(
+        nombre.toFixed(2)
+    );
+
+}
+
+
+function complexe(reel, imaginaire) {
+
+    reel =
+        arrondir(reel);
+
+    imaginaire =
+        arrondir(imaginaire);
+
+
+    if (
+        reel === 0 &&
+        imaginaire === 0
+    ) {
+
+        return "0";
+
+    }
+
+
+    if (
+        imaginaire === 0
+    ) {
+
+        return String(reel);
+
+    }
+
+
+    if (
+        reel === 0
+    ) {
+
+        if (
+            imaginaire === 1
+        ) {
+
+            return "i";
+
+        }
+
+        if (
+            imaginaire === -1
+        ) {
+
+            return "-i";
+
+        }
+
+        return imaginaire + "i";
+
+    }
+
+
+    const signe =
+        imaginaire >= 0
+            ? " + "
+            : " − ";
+
+
+    const valeur =
+        Math.abs(imaginaire);
+
+
+    if (
+        valeur === 1
+    ) {
+
+        return (
+            reel +
+            signe +
+            "i"
+        );
+
+    }
+
+
+    return (
+        reel +
+        signe +
+        valeur +
+        "i"
+    );
+
+}
+
+
+/* =========================================================
+   MODULE
+========================================================= */
+
+function moduleComplexe(
+    reel,
+    imaginaire
+) {
+
+    return Math.sqrt(
+        reel * reel +
+        imaginaire * imaginaire
+    );
+
+}
+
+
+/* =========================================================
+   ARGUMENT
+========================================================= */
+
+function argumentComplexe(
+    reel,
+    imaginaire
+) {
+
+    if (
+        reel === 0 &&
+        imaginaire === 0
+    ) {
+
+        return 0;
+
+    }
+
+    return (
+        Math.atan2(
+            imaginaire,
+            reel
+        )
+        *
+        180
+        /
+        Math.PI
+    );
+
+}
+
+
+/* =========================================================
+   CALCULS
+========================================================= */
+
+function effectuerCalcul(
+    operation,
+    a,
+    b,
+    c,
+    d
+) {
+
+
+    if (
+        operation === "+"
+    ) {
+
+        return {
+
+            reel:
+                a + c,
+
+            imaginaire:
+                b + d
+
+        };
+
+    }
+
+
+    if (
+        operation === "-"
+    ) {
+
+        return {
+
+            reel:
+                a - c,
+
+            imaginaire:
+                b - d
+
+        };
+
+    }
+
+
+    if (
+        operation === "*"
+    ) {
+
+        return {
+
+            reel:
+                a * c -
+                b * d,
+
+            imaginaire:
+                a * d +
+                b * c
+
+        };
+
+    }
+
+
+    if (
+        operation === "/"
+    ) {
+
+        const denominateur =
+            c * c +
+            d * d;
+
+
+        if (
+            denominateur === 0
+        ) {
+
+            return null;
+
+        }
+
+
+        return {
+
+            reel:
+                (
+                    a * c +
+                    b * d
+                )
+                /
+                denominateur,
+
+            imaginaire:
+                (
+                    b * c -
+                    a * d
+                )
+                /
+                denominateur
+
+        };
+
+    }
+
+}
+
+
+/* =========================================================
+   MISE A JOUR DES TEXTES
+========================================================= */
+
+function mettreAJourTextes() {
+
+
+    const {
+        a,
+        b,
+        c,
+        d
+    } = nombres();
+
+
+    /*
+        z1
+    */
+
+    document.getElementById(
+        "z1"
+    ).textContent =
+        complexe(a, b);
+
+
+    /*
+        z2
+    */
+
+    document.getElementById(
+        "z2"
+    ).textContent =
+        complexe(c, d);
+
+
+    /*
+        Addition
+    */
+
+    const addition =
+        effectuerCalcul(
+            "+",
+            a,
+            b,
+            c,
+            d
+        );
+
+
+    document.getElementById(
+        "addition"
+    ).textContent =
+        "z₁ + z₂ = " +
+        complexe(
+            addition.reel,
+            addition.imaginaire
+        );
+
+
+    /*
+        Soustraction
+    */
+
+    const soustraction =
+        effectuerCalcul(
+            "-",
+            a,
+            b,
+            c,
+            d
+        );
+
+
+    document.getElementById(
+        "soustraction"
+    ).textContent =
+        "z₁ − z₂ = " +
+        complexe(
+            soustraction.reel,
+            soustraction.imaginaire
+        );
+
+
+    /*
+        Multiplication
+    */
+
+    const multiplication =
+        effectuerCalcul(
+            "*",
+            a,
+            b,
+            c,
+            d
+        );
+
+
+    document.getElementById(
+        "multiplication"
+    ).textContent =
+        "z₁ × z₂ = " +
+        complexe(
+            multiplication.reel,
+            multiplication.imaginaire
+        );
+
+
+    /*
+        Division
+    */
+
+    const division =
+        effectuerCalcul(
+            "/",
+            a,
+            b,
+            c,
+            d
+        );
+
+
+    if (
+        division === null
+    ) {
+
+        document.getElementById(
+            "division"
+        ).textContent =
+            "z₁ ÷ z₂ = impossible";
+
+    } else {
+
+        document.getElementById(
+            "division"
+        ).textContent =
+            "z₁ ÷ z₂ = " +
+            complexe(
+                division.reel,
+                division.imaginaire
+            );
+
+    }
+
+
+    /*
+        Modules
+    */
+
+    document.getElementById(
+        "module1"
+    ).textContent =
+        arrondir(
+            moduleComplexe(
+                a,
+                b
+            )
+        );
+
+
+    document.getElementById(
+        "module2"
+    ).textContent =
+        arrondir(
+            moduleComplexe(
+                c,
+                d
+            )
+        );
+
+
+    /*
+        Arguments
+    */
+
+    document.getElementById(
+        "argument1"
+    ).textContent =
+        arrondir(
+            argumentComplexe(
+                a,
+                b
+            )
+        ) + "°";
+
+
+    document.getElementById(
+        "argument2"
+    ).textContent =
+        arrondir(
+            argumentComplexe(
+                c,
+                d
+            )
+        ) + "°";
+
+}
+
+
+/* =========================================================
+   MISE A JOUR DU CANVAS
+========================================================= */
+
+function demanderRedessin() {
+
+    if (
+        framePlan !== null
+    ) {
+
+        return;
+
+    }
+
+
+    framePlan =
+        requestAnimationFrame(
+            () => {
+
+                dessinerPlan();
+
+                framePlan = null;
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   MISE A JOUR COMPLETE
+========================================================= */
+
+function mettreAJour() {
+
+    mettreAJourTextes();
+
+    demanderRedessin();
+
+}
+
+
+/* =========================================================
+   BOUTONS DE CALCUL
+========================================================= */
+
+function calculer(
+    operation
+) {
+
+
+    const {
+        a,
+        b,
+        c,
+        d
+    } = nombres();
+
+
+    const resultat =
+        effectuerCalcul(
+            operation,
+            a,
+            b,
+            c,
+            d
+        );
+
+
+    dernierResultat =
+        resultat;
+
+
+    if (
+        resultat === null
+    ) {
+
+        document.getElementById(
+            "resultat"
+        ).textContent =
+            "Division impossible";
+
+    } else {
+
+        document.getElementById(
+            "resultat"
+        ).textContent =
+            complexe(
+                resultat.reel,
+                resultat.imaginaire
+            );
+
+    }
+
+
+    demanderRedessin();
+
+}
+
+
+/* =========================================================
+   PLAN COMPLEXE
+========================================================= */
+
+function dessinerPlan() {
+
+
+    const {
+        a,
+        b,
+        c,
+        d
+    } = nombres();
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /*
+        Taille de base.
+    */
+
+    const baseEchelle =
+        40 * zoom;
+
+
+    const centreX =
+        canvas.width / 2 +
+        offsetX;
+
+
+    const centreY =
+        canvas.height / 2 +
+        offsetY;
+
+
+    /*
+        Grille.
+    */
+
+    ctx.lineWidth = 1;
+
+    ctx.strokeStyle =
+        "rgba(100,116,139,0.18)";
+
+
+    const taille =
+        Math.max(
+            canvas.width,
+            canvas.height
+        );
+
+
+    /*
+        Lignes verticales.
+    */
+
+    for (
+        let x = centreX % baseEchelle;
+        x < taille;
+        x += baseEchelle
+    ) {
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            x,
+            0
+        );
+
+        ctx.lineTo(
+            x,
+            canvas.height
+        );
+
+        ctx.stroke();
+
+    }
+
+
+    /*
+        Lignes horizontales.
+    */
+
+    for (
+        let y = centreY % baseEchelle;
+        y < taille;
+        y += baseEchelle
+    ) {
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            0,
+            y
+        );
+
+        ctx.lineTo(
+            canvas.width,
+            y
+        );
+
+        ctx.stroke();
+
+    }
+
+
+    /*
+        Ligne horizontale négative.
+    */
+
+    for (
+        let x = centreX % baseEchelle;
+        x > 0;
+        x -= baseEchelle
+    ) {
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            x,
+            0
+        );
+
+        ctx.lineTo(
+            x,
+            canvas.height
+        );
+
+        ctx.stroke();
+
+    }
+
+
+    /*
+        Ligne verticale négative.
+    */
+
+    for (
+        let y = centreY % baseEchelle;
+        y > 0;
+        y -= baseEchelle
+    ) {
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            0,
+            y
+        );
+
+        ctx.lineTo(
+            canvas.width,
+            y
+        );
+
+        ctx.stroke();
+
+    }
+
+
+    /*
+        Axes.
+    */
+
+    ctx.strokeStyle =
+        "#64748b";
+
+    ctx.lineWidth = 2;
+
+
+    /*
+        Axe réel.
+    */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        0,
+        centreY
+    );
+
+    ctx.lineTo(
+        canvas.width,
+        centreY
+    );
+
+    ctx.stroke();
+
+
+    /*
+        Axe imaginaire.
+    */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        centreX,
+        0
+    );
+
+    ctx.lineTo(
+        centreX,
+        canvas.height
+    );
+
+    ctx.stroke();
+
+
+    /*
+        Labels.
+    */
+
+    ctx.fillStyle =
+        "#94a3b8";
+
+    ctx.font =
+        "14px Arial";
+
+
+    ctx.fillText(
+        "Réel →",
+        canvas.width - 70,
+        centreY - 10
+    );
+
+
+    ctx.fillText(
+        "Imaginaire",
+        centreX + 10,
+        20
+    );
+
+
+    /*
+        Graduation.
+    */
+
+    ctx.fillStyle =
+        "#64748b";
+
+    ctx.font =
+        "12px Arial";
+
+
+    const maxGraduations =
+        20;
+
+
+    for (
+        let i = -maxGraduations;
+        i <= maxGraduations;
+        i++
+    ) {
+
+        if (
+            i === 0
+        ) {
+
+            continue;
+
+        }
+
+
+        const x =
+            centreX +
+            i * baseEchelle;
+
+
+        const y =
+            centreY -
+            i * baseEchelle;
+
+
+        if (
+            x > 5 &&
+            x < canvas.width - 5
+        ) {
+
+            ctx.fillText(
+                i,
+                x - 4,
+                centreY + 18
+            );
+
+        }
+
+
+        if (
+            y > 5 &&
+            y < canvas.height - 5
+        ) {
+
+            ctx.fillText(
+                i,
+                centreX + 8,
+                y + 4
+            );
+
+        }
+
+    }
+
+
+    /*
+        Fonction de conversion.
+    */
+
+    function convertir(
+        reel,
+        imaginaire
+    ) {
+
+        return {
+
+            x:
+                centreX +
+                reel * baseEchelle,
+
+            y:
+                centreY -
+                imaginaire * baseEchelle
+
+        };
+
+    }
+
+
+    /*
+        Dessiner un complexe.
+    */
+
+    function dessinerComplexe(
+        reel,
+        imaginaire,
+        couleur,
+        nom
+    ) {
+
+
+        if (
+            reel === 0 &&
+            imaginaire === 0
+        ) {
+
+            return;
+
+        }
+
+
+        const point =
+            convertir(
+                reel,
+                imaginaire
+            );
+
+
+        /*
+            Ligne.
+        */
+
+        ctx.strokeStyle =
+            couleur;
+
+        ctx.lineWidth =
+            3;
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            centreX,
+            centreY
+        );
+
+        ctx.lineTo(
+            point.x,
+            point.y
+        );
+
+        ctx.stroke();
+
+
+        /*
+            Point.
+        */
+
+        ctx.fillStyle =
+            couleur;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            point.x,
+            point.y,
+            7,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fill();
+
+
+        /*
+            Label.
+        */
+
+        ctx.font =
+            "bold 15px Arial";
+
+        ctx.fillText(
+            nom,
+            point.x + 10,
+            point.y - 10
+        );
+
+    }
+
+
+    /*
+        z1
+    */
+
+    dessinerComplexe(
+        a,
+        b,
+        "#3b82f6",
+        "z₁"
+    );
+
+
+    /*
+        z2
+    */
+
+    dessinerComplexe(
+        c,
+        d,
+        "#a855f7",
+        "z₂"
+    );
+
+
+    /*
+        Résultat.
+    */
+
+    if (
+        dernierResultat !== null
+    ) {
+
+        dessinerComplexe(
+            dernierResultat.reel,
+            dernierResultat.imaginaire,
+            "#22c55e",
+            "résultat"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+const inputs = [
+    inputA,
+    inputB,
+    inputC,
+    inputD
+];
+
+
+inputs.forEach(
+    input => {
+
+        input.addEventListener(
+            "input",
+            mettreAJour
+        );
+
+    }
+);
+
+
+/* =========================================================
+   ZOOM DU PLAN
+========================================================= */
+
+canvas.addEventListener(
+    "wheel",
+    event => {
+
+        event.preventDefault();
+
+
+        if (
+            event.deltaY < 0
+        ) {
+
+            zoom *= 1.1;
+
+        } else {
+
+            zoom /= 1.1;
+
+        }
+
+
+        zoom =
+            Math.max(
+                0.25,
+                Math.min(
+                    zoom,
+                    5
+                )
+            );
+
+
+        demanderRedessin();
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+/* =========================================================
+   DEPLACEMENT DU PLAN
+========================================================= */
+
+canvas.addEventListener(
+    "mousedown",
+    event => {
+
+        sourisDown = true;
+
+        ancienneSourisX =
+            event.clientX;
+
+        ancienneSourisY =
+            event.clientY;
+
+    }
+);
+
+
+window.addEventListener(
+    "mouseup",
+    () => {
+
+        sourisDown = false;
+
+    }
+);
+
+
+canvas.addEventListener(
+    "mousemove",
+    event => {
+
+        if (
+            !sourisDown
+        ) {
+
+            return;
+
+        }
+
+
+        const dx =
+            event.clientX -
+            ancienneSourisX;
+
+
+        const dy =
+            event.clientY -
+            ancienneSourisY;
+
+
+        offsetX += dx;
+
+        offsetY += dy;
+
+
+        ancienneSourisX =
+            event.clientX;
+
+        ancienneSourisY =
+            event.clientY;
+
+
+        demanderRedessin();
+
+    }
+);
+
+
+/* =========================================================
+   SUPPORT TACTILE
+========================================================= */
+
+let toucheX = 0;
+
+let toucheY = 0;
+
+
+canvas.addEventListener(
+    "touchstart",
+    event => {
+
+        if (
+            event.touches.length !== 1
+        ) {
+
+            return;
+
+        }
+
+
+        toucheX =
+            event.touches[0].clientX;
+
+        toucheY =
+            event.touches[0].clientY;
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+canvas.addEventListener(
+    "touchmove",
+    event => {
+
+        if (
+            event.touches.length !== 1
+        ) {
+
+            return;
+
+        }
+
+
+        const x =
+            event.touches[0].clientX;
+
+        const y =
+            event.touches[0].clientY;
+
+
+        offsetX +=
+            x - toucheX;
+
+        offsetY +=
+            y - toucheY;
+
+
+        toucheX = x;
+
+        toucheY = y;
+
+
+        demanderRedessin();
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+/* =========================================================
+   PREMIER AFFICHAGE
+========================================================= */
+
+mettreAJour();
+
+</script>
+
+
+</body>
+
+</html>

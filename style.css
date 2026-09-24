@@ -1,0 +1,198 @@
+body {
+    background-color: #e8f4ff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #0057b8;
+}
+
+p {
+    font-size: 18px;
+    color: #333;
+}
+
+img {
+    width: 250px;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 0 15px gray;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: white;
+    margin: 10px auto;
+    padding: 10px;
+    width: 250px;
+    border-radius: 10px;
+}
+
+button {
+    background-color: #0057b8;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+nav {margin-top: 20px;
+}
+
+nav a {
+    color: #0057b8;
+    text-decoration: none;
+    margin: 10px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: red;
+}
+
+
+form {
+    background-color: white;
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+input, textarea {
+    width: 90%;
+    padding: 8px;
+}
+
+textarea {
+    height: 100px;
+}
+
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 28px;
+    }
+
+    img {
+        width: 80%;
+    }
+
+    nav a {
+        display: block;
+        margin: 15px;
+    }
+
+    form {
+        width: 80%;
+    }
+
+}
+
+.projet {
+    background-color: white;
+    width: 300px;
+    padding: 20px;
+    margin: 30px auto;
+    border-radius: 15px;
+
+    /* Animation de départ */
+    opacity: 0;
+    transform: translateY(30px);
+
+    animation: apparition 1s ease forwards;
+}
+
+
+@keyframes apparition {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+button {
+    background-color: #0057b8;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+button:hover {
+    background-color: rgb(146, 39, 98);
+    transform: scale(1.1);
+}
+
+
+
+.calculateur {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.calculateur div {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.boutons {
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#resultat {
+    padding: 15px;
+    margin: 20px 0;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.formule {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.theoreme {
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    font-size: 18px;
+}
