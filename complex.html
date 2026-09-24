@@ -2,11 +2,13 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Le théorème fondamental de l'algèbre</title>
+    <title>Nombres complexes</title>
+
 
     <style>
 
@@ -24,8 +26,14 @@
 
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
             color: #e2e8f0;
+
             background:
                 radial-gradient(
                     circle at 50% -20%,
@@ -33,15 +41,23 @@
                     #07101f 35%,
                     #020617 75%
                 );
+
             min-height: 100vh;
+
             line-height: 1.6;
         }
 
+
         body::before {
+
             content: "";
+
             position: fixed;
+
             inset: 0;
+
             pointer-events: none;
+
             z-index: -1;
 
             background:
@@ -50,6 +66,7 @@
                     rgba(37, 99, 235, 0.07),
                     transparent 28%
                 ),
+
                 radial-gradient(
                     circle at 85% 80%,
                     rgba(124, 58, 237, 0.06),
@@ -58,37 +75,58 @@
         }
 
 
+
         /* =========================================================
            HEADER
         ========================================================= */
 
         header {
-            text-align: center;
-            padding: 55px 20px 35px;
 
-            background: rgba(2, 6, 23, 0.85);
+            text-align: center;
+
+            padding:
+                55px 20px 35px;
+
+            background:
+                rgba(2, 6, 23, 0.92);
 
             border-bottom:
                 1px solid
                 rgba(59, 130, 246, 0.2);
         }
 
+
         header h1 {
+
             margin: 0;
 
             font-size:
-                clamp(28px, 5vw, 52px);
+                clamp(
+                    32px,
+                    5vw,
+                    52px
+                );
 
-            color: #60a5fa;
+            color:
+                #60a5fa;
 
-            letter-spacing: -1px;
+            letter-spacing:
+                -1px;
         }
+
 
         header p {
-            color: #94a3b8;
-            margin: 10px 0 25px;
-            font-size: 17px;
+
+            color:
+                #94a3b8;
+
+            margin:
+                10px 0 25px;
+
+            font-size:
+                17px;
         }
+
 
 
         /* =========================================================
@@ -96,21 +134,32 @@
         ========================================================= */
 
         nav {
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
 
             flex-wrap: wrap;
+
             gap: 8px;
         }
 
+
         nav a {
-            color: #cbd5e1;
-            text-decoration: none;
 
-            padding: 8px 15px;
+            color:
+                #cbd5e1;
 
-            border-radius: 20px;
+            text-decoration:
+                none;
+
+            padding:
+                8px 15px;
+
+            border-radius:
+                20px;
 
             transition:
                 background 0.2s ease,
@@ -118,8 +167,11 @@
                 transform 0.2s ease;
         }
 
+
         nav a:hover {
-            color: white;
+
+            color:
+                white;
 
             background:
                 rgba(37, 99, 235, 0.15);
@@ -129,14 +181,30 @@
         }
 
 
+        nav a.active {
+
+            color:
+                #60a5fa;
+
+            background:
+                rgba(37, 99, 235, 0.10);
+        }
+
+
+
         /* =========================================================
            MAIN
         ========================================================= */
 
         main {
-            width: min(1100px, 92%);
-            margin: 35px auto 70px;
+
+            width:
+                min(1100px, 92%);
+
+            margin:
+                35px auto 70px;
         }
+
 
 
         /* =========================================================
@@ -144,14 +212,18 @@
         ========================================================= */
 
         section {
-            margin-bottom: 25px;
 
-            padding: 30px;
+            margin-bottom:
+                25px;
 
-            border-radius: 18px;
+            padding:
+                30px;
+
+            border-radius:
+                18px;
 
             background:
-                rgba(15, 23, 42, 0.9);
+                rgba(15, 23, 42, 0.92);
 
             border:
                 1px solid
@@ -166,28 +238,47 @@
                 transform 0.25s ease;
         }
 
+
         section:hover {
+
             border-color:
                 rgba(59, 130, 246, 0.35);
         }
 
+
         section h2 {
-            margin-top: 0;
-            color: #f8fafc;
-            font-size: 27px;
+
+            margin-top:
+                0;
+
+            color:
+                #f8fafc;
+
+            font-size:
+                27px;
         }
+
 
         section h3 {
-            color: #93c5fd;
+
+            color:
+                #93c5fd;
         }
+
 
         p {
-            color: #cbd5e1;
+
+            color:
+                #cbd5e1;
         }
 
+
         strong {
-            color: white;
+
+            color:
+                white;
         }
+
 
 
         /* =========================================================
@@ -195,25 +286,47 @@
         ========================================================= */
 
         .hero {
-            text-align: center;
-            padding: 40px 25px;
+
+            text-align:
+                center;
+
+            padding:
+                40px 25px;
         }
+
 
         .hero-symbol {
-            font-size: 58px;
-            color: #60a5fa;
-            margin-bottom: 5px;
+
+            font-size:
+                58px;
+
+            color:
+                #60a5fa;
+
+            margin-bottom:
+                5px;
         }
+
 
         .hero h2 {
-            color: #60a5fa;
-            font-size: 31px;
+
+            color:
+                #60a5fa;
+
+            font-size:
+                31px;
         }
 
+
         .hero p {
-            max-width: 750px;
-            margin: 10px auto;
+
+            max-width:
+                750px;
+
+            margin:
+                10px auto;
         }
+
 
 
         /* =========================================================
@@ -221,26 +334,36 @@
         ========================================================= */
 
         .formule {
-            text-align: center;
 
-            padding: 18px;
+            text-align:
+                center;
 
-            margin: 20px 0;
+            padding:
+                18px;
 
-            border-radius: 12px;
+            margin:
+                20px 0;
 
-            background: #020617;
+            border-radius:
+                12px;
+
+            background:
+                #020617;
 
             border:
                 1px solid
                 #1e3a5f;
 
-            color: #93c5fd;
+            color:
+                #93c5fd;
 
-            font-size: 24px;
+            font-size:
+                24px;
 
-            font-weight: bold;
+            font-weight:
+                bold;
         }
+
 
 
         /* =========================================================
@@ -248,18 +371,28 @@
         ========================================================= */
 
         .calculateur {
-            display: grid;
+
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(2, minmax(0, 1fr));
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
 
-            gap: 20px;
+            gap:
+                20px;
         }
 
-        .nombre {
-            padding: 23px;
 
-            border-radius: 15px;
+        .nombre {
+
+            padding:
+                23px;
+
+            border-radius:
+                15px;
 
             background:
                 linear-gradient(
@@ -277,7 +410,9 @@
                 border-color 0.2s ease;
         }
 
+
         .nombre:hover {
+
             transform:
                 translateY(-3px);
 
@@ -285,27 +420,47 @@
                 #3b82f6;
         }
 
+
         .nombre h3 {
-            margin-top: 0;
-            color: #60a5fa;
+
+            margin-top:
+                0;
+
+            color:
+                #60a5fa;
         }
+
 
         .champ {
-            margin-top: 17px;
+
+            margin-top:
+                17px;
         }
+
 
         .champ label {
-            display: block;
-            margin-bottom: 6px;
-            color: #cbd5e1;
+
+            display:
+                block;
+
+            margin-bottom:
+                6px;
+
+            color:
+                #cbd5e1;
         }
 
+
         .champ input {
-            width: 100%;
 
-            padding: 12px 14px;
+            width:
+                100%;
 
-            border-radius: 9px;
+            padding:
+                12px 14px;
+
+            border-radius:
+                9px;
 
             border:
                 1px solid
@@ -314,25 +469,36 @@
             background:
                 #020617;
 
-            color: white;
+            color:
+                white;
 
-            font-size: 17px;
+            font-size:
+                17px;
 
-            outline: none;
+            outline:
+                none;
 
             transition:
                 border-color 0.2s ease,
                 box-shadow 0.2s ease;
         }
 
+
         .champ input:focus {
+
             border-color:
                 #3b82f6;
 
             box-shadow:
                 0 0 0 3px
-                rgba(59, 130, 246, 0.12);
+                rgba(
+                    59,
+                    130,
+                    246,
+                    0.12
+                );
         }
+
 
 
         /* =========================================================
@@ -340,20 +506,31 @@
         ========================================================= */
 
         .complexes {
-            display: grid;
+
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(2, 1fr);
+                repeat(
+                    2,
+                    1fr
+                );
 
-            gap: 15px;
+            gap:
+                15px;
 
-            margin-top: 20px;
+            margin-top:
+                20px;
         }
 
-        .complexe-card {
-            text-align: center;
 
-            padding: 18px;
+        .complexe-card {
+
+            text-align:
+                center;
+
+            padding:
+                18px;
 
             background:
                 #020617;
@@ -362,23 +539,36 @@
                 1px solid
                 #1e3a5f;
 
-            border-radius: 13px;
+            border-radius:
+                13px;
         }
+
 
         .complexe-label {
-            color: #94a3b8;
-            font-size: 14px;
+
+            color:
+                #94a3b8;
+
+            font-size:
+                14px;
         }
+
 
         .complexe-value {
-            font-size: 26px;
-            font-weight: bold;
-            color: #60a5fa;
-            margin-top: 5px;
 
-            transition:
-                color 0.15s ease;
+            font-size:
+                26px;
+
+            font-weight:
+                bold;
+
+            color:
+                #60a5fa;
+
+            margin-top:
+                5px;
         }
+
 
 
         /* =========================================================
@@ -386,17 +576,28 @@
         ========================================================= */
 
         .boutons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
 
-            gap: 10px;
+            display:
+                flex;
 
-            margin: 25px 0;
+            justify-content:
+                center;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                10px;
+
+            margin:
+                25px 0;
         }
 
+
         button {
-            border: none;
+
+            border:
+                none;
 
             padding:
                 11px 19px;
@@ -407,11 +608,14 @@
             background:
                 #2563eb;
 
-            color: white;
+            color:
+                white;
 
-            font-weight: bold;
+            font-weight:
+                bold;
 
-            cursor: pointer;
+            cursor:
+                pointer;
 
             transition:
                 background 0.2s ease,
@@ -419,7 +623,9 @@
                 box-shadow 0.2s ease;
         }
 
+
         button:hover {
+
             background:
                 #3b82f6;
 
@@ -428,13 +634,21 @@
 
             box-shadow:
                 0 7px 18px
-                rgba(37, 99, 235, 0.25);
+                rgba(
+                    37,
+                    99,
+                    235,
+                    0.25
+                );
         }
 
+
         button:active {
+
             transform:
                 scale(0.96);
         }
+
 
 
         /* =========================================================
@@ -442,11 +656,15 @@
         ========================================================= */
 
         .resultat {
-            text-align: center;
 
-            padding: 20px;
+            text-align:
+                center;
 
-            border-radius: 14px;
+            padding:
+                20px;
+
+            border-radius:
+                14px;
 
             background:
                 linear-gradient(
@@ -460,16 +678,29 @@
                 #2563eb;
         }
 
+
         .resultat-label {
-            color: #93c5fd;
+
+            color:
+                #93c5fd;
         }
 
+
         #resultat {
-            font-size: 29px;
-            font-weight: bold;
-            color: white;
-            margin-top: 3px;
+
+            font-size:
+                29px;
+
+            font-weight:
+                bold;
+
+            color:
+                white;
+
+            margin-top:
+                3px;
         }
+
 
 
         /* =========================================================
@@ -477,20 +708,31 @@
         ========================================================= */
 
         .mesures {
-            display: grid;
+
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(4, 1fr);
+                repeat(
+                    4,
+                    1fr
+                );
 
-            gap: 12px;
+            gap:
+                12px;
 
-            margin-top: 20px;
+            margin-top:
+                20px;
         }
 
-        .mesure {
-            padding: 18px;
 
-            text-align: center;
+        .mesure {
+
+            padding:
+                18px;
+
+            text-align:
+                center;
 
             background:
                 #020617;
@@ -503,19 +745,32 @@
                 12px;
         }
 
+
         .mesure .nom {
-            color: #94a3b8;
-            font-size: 14px;
+
+            color:
+                #94a3b8;
+
+            font-size:
+                14px;
         }
+
 
         .mesure .valeur {
-            font-size: 23px;
-            font-weight: bold;
 
-            color: #a78bfa;
+            font-size:
+                23px;
 
-            margin-top: 4px;
+            font-weight:
+                bold;
+
+            color:
+                #a78bfa;
+
+            margin-top:
+                4px;
         }
+
 
 
         /* =========================================================
@@ -523,18 +778,31 @@
         ========================================================= */
 
         .plan-container {
-            display: flex;
-            justify-content: center;
 
-            margin-top: 20px;
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            margin-top:
+                20px;
         }
 
-        canvas {
-            display: block;
 
-            width: 100%;
-            max-width: 700px;
-            height: auto;
+        canvas {
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            max-width:
+                700px;
+
+            height:
+                auto;
 
             background:
                 #020617;
@@ -548,15 +816,23 @@
 
             cursor:
                 grab;
+
+            touch-action:
+                none;
         }
 
+
         canvas:active {
+
             cursor:
                 grabbing;
         }
 
+
         .plan-info {
-            text-align: center;
+
+            text-align:
+                center;
 
             color:
                 #64748b;
@@ -568,43 +844,75 @@
                 10px;
         }
 
+
         .legende {
-            display: flex;
 
-            justify-content: center;
+            display:
+                flex;
 
-            flex-wrap: wrap;
+            justify-content:
+                center;
 
-            gap: 20px;
+            flex-wrap:
+                wrap;
 
-            margin-top: 13px;
+            gap:
+                20px;
+
+            margin-top:
+                13px;
         }
+
 
         .legende-item {
-            display: flex;
-            align-items: center;
-            gap: 7px;
 
-            color: #cbd5e1;
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            color:
+                #cbd5e1;
         }
+
 
         .point {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
+
+            width:
+                11px;
+
+            height:
+                11px;
+
+            border-radius:
+                50%;
         }
+
 
         .point-bleu {
-            background: #3b82f6;
+
+            background:
+                #3b82f6;
         }
+
 
         .point-violet {
-            background: #a855f7;
+
+            background:
+                #a855f7;
         }
 
+
         .point-vert {
-            background: #22c55e;
+
+            background:
+                #22c55e;
         }
+
 
 
         /* =========================================================
@@ -612,16 +920,25 @@
         ========================================================= */
 
         .definition {
-            display: grid;
+
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(2, 1fr);
+                repeat(
+                    2,
+                    1fr
+                );
 
-            gap: 15px;
+            gap:
+                15px;
         }
 
+
         .definition-card {
-            padding: 20px;
+
+            padding:
+                20px;
 
             background:
                 #020617;
@@ -633,6 +950,7 @@
             border-radius:
                 12px;
         }
+
 
 
         /* =========================================================
@@ -640,16 +958,25 @@
         ========================================================= */
 
         .exemples {
-            display: grid;
+
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(2, 1fr);
+                repeat(
+                    2,
+                    1fr
+                );
 
-            gap: 15px;
+            gap:
+                15px;
         }
 
+
         .exemple {
-            padding: 20px;
+
+            padding:
+                20px;
 
             background:
                 #020617;
@@ -662,17 +989,26 @@
                 12px;
         }
 
+
         .exemple h3 {
-            margin-top: 0;
+
+            margin-top:
+                0;
         }
+
 
         .calcul {
-            color: white;
 
-            font-size: 20px;
+            color:
+                white;
 
-            font-weight: bold;
+            font-size:
+                20px;
+
+            font-weight:
+                bold;
         }
+
 
 
         /* =========================================================
@@ -680,11 +1016,15 @@
         ========================================================= */
 
         .theoreme {
-            text-align: center;
 
-            padding: 28px;
+            text-align:
+                center;
 
-            margin: 20px 0;
+            padding:
+                28px;
+
+            margin:
+                20px 0;
 
             background:
                 linear-gradient(
@@ -701,10 +1041,16 @@
                 15px;
         }
 
+
         .theoreme .grand {
-            font-size: 21px;
-            color: #dbeafe;
+
+            font-size:
+                21px;
+
+            color:
+                #dbeafe;
         }
+
 
 
         /* =========================================================
@@ -712,15 +1058,25 @@
         ========================================================= */
 
         .etapes {
-            display: grid;
-            gap: 12px;
+
+            display:
+                grid;
+
+            gap:
+                12px;
         }
 
-        .etape {
-            display: flex;
-            gap: 17px;
 
-            padding: 17px;
+        .etape {
+
+            display:
+                flex;
+
+            gap:
+                17px;
+
+            padding:
+                17px;
 
             background:
                 #020617;
@@ -733,30 +1089,51 @@
                 11px;
         }
 
+
         .numero {
-            min-width: 37px;
-            height: 37px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            min-width:
+                37px;
 
-            border-radius: 50%;
+            height:
+                37px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                50%;
 
             background:
                 #2563eb;
 
-            color: white;
-            font-weight: bold;
+            color:
+                white;
+
+            font-weight:
+                bold;
         }
+
 
         .etape h3 {
-            margin: 0 0 3px;
+
+            margin:
+                0 0 3px;
         }
 
+
         .etape p {
-            margin: 0;
+
+            margin:
+                0;
         }
+
 
 
         /* =========================================================
@@ -764,16 +1141,25 @@
         ========================================================= */
 
         .retenir {
-            display: grid;
+
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(2, 1fr);
+                repeat(
+                    2,
+                    1fr
+                );
 
-            gap: 11px;
+            gap:
+                11px;
         }
 
+
         .retenir-item {
-            padding: 15px;
+
+            padding:
+                15px;
 
             background:
                 #020617;
@@ -790,16 +1176,21 @@
         }
 
 
+
         /* =========================================================
            FOOTER
         ========================================================= */
 
         footer {
-            text-align: center;
 
-            padding: 28px;
+            text-align:
+                center;
 
-            color: #64748b;
+            padding:
+                28px;
+
+            color:
+                #64748b;
 
             border-top:
                 1px solid
@@ -810,6 +1201,7 @@
         }
 
 
+
         /* =========================================================
            RESPONSIVE
         ========================================================= */
@@ -817,44 +1209,76 @@
         @media (max-width: 800px) {
 
             .mesures {
+
                 grid-template-columns:
-                    repeat(2, 1fr);
+                    repeat(
+                        2,
+                        1fr
+                    );
             }
 
         }
 
+
         @media (max-width: 650px) {
 
             main {
-                width: 94%;
+
+                width:
+                    94%;
             }
 
+
             section {
-                padding: 20px;
+
+                padding:
+                    20px;
             }
+
 
             .calculateur,
             .complexes,
             .definition,
             .exemples,
             .retenir {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
             }
+
 
             .mesures {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
             }
+
 
             header h1 {
-                font-size: 30px;
+
+                font-size:
+                    30px;
             }
+
 
             .hero h2 {
-                font-size: 25px;
+
+                font-size:
+                    25px;
             }
 
+
             .formule {
-                font-size: 20px;
+
+                font-size:
+                    20px;
+            }
+
+
+            .etape {
+
+                align-items:
+                    flex-start;
             }
 
         }
@@ -874,11 +1298,11 @@
 <header>
 
     <h1>
-        Le théorème fondamental de l'algèbre
+        Nombres complexes
     </h1>
 
     <p>
-        Nombres complexes • Calculs • Géométrie
+        Calculs • Géométrie • Théorème fondamental de l'algèbre
     </p>
 
     <nav>
@@ -887,12 +1311,15 @@
             Accueil
         </a>
 
-        <a href="contact.html">
-            Contact
+        <a
+            href="complex.html"
+            class="active"
+        >
+            Nombres complexes
         </a>
 
-        <a href="complex.html">
-            Calcul complexe
+        <a href="contact.html">
+            Contact
         </a>
 
     </nav>
@@ -911,7 +1338,7 @@
 <section class="hero">
 
     <div class="hero-symbol">
-        ∑
+        z = a + bi
     </div>
 
     <h2>
@@ -925,8 +1352,9 @@
     </p>
 
     <p>
-        Explore leurs calculs, leur géométrie
-        et le théorème fondamental de l'algèbre.
+        Explore leurs calculs, leur géométrie,
+        leur module, leur argument et leur rôle
+        dans le théorème fondamental de l'algèbre.
     </p>
 
 </section>
@@ -978,6 +1406,7 @@
 
             </div>
 
+
             <div class="champ">
 
                 <label>
@@ -1019,6 +1448,7 @@
                 >
 
             </div>
+
 
             <div class="champ">
 
@@ -1138,13 +1568,13 @@
         et grâce à son angle.
     </p>
 
+
     <div class="formule">
         |z| = √(a² + b²)
     </div>
 
 
     <div class="mesures">
-
 
         <div class="mesure">
 
@@ -1245,6 +1675,7 @@
         comme un point dans un plan.
     </p>
 
+
     <div class="plan-container">
 
         <canvas
@@ -1254,6 +1685,7 @@
         ></canvas>
 
     </div>
+
 
     <div class="plan-info">
         🖱️ Molette : zoom • Clic + déplacement : déplacer le plan
@@ -1270,6 +1702,7 @@
 
         </div>
 
+
         <div class="legende-item">
 
             <span class="point point-violet"></span>
@@ -1277,6 +1710,7 @@
             z₂
 
         </div>
+
 
         <div class="legende-item">
 
@@ -1305,6 +1739,7 @@
     <p>
         Prenons par exemple :
     </p>
+
 
     <div class="formule">
         z = 3 + 2i
@@ -1354,6 +1789,7 @@
         <strong>i</strong> par :
     </p>
 
+
     <div class="formule">
         i² = −1
     </div>
@@ -1398,6 +1834,7 @@
         </div>
 
 
+
         <div class="exemple">
 
             <h3>
@@ -1419,6 +1856,7 @@
         </div>
 
 
+
         <div class="exemple">
 
             <h3>
@@ -1438,6 +1876,7 @@
             </p>
 
         </div>
+
 
 
         <div class="exemple">
@@ -1479,7 +1918,7 @@
     <p>
         Le théorème fondamental de l'algèbre est
         l'un des résultats essentiels concernant
-        les polynômes.
+        les polynômes et les nombres complexes.
     </p>
 
 
@@ -1501,18 +1940,22 @@
         Exemple : x² + 1
     </h3>
 
+
     <div class="formule">
         x² + 1 = 0
     </div>
+
 
     <p>
         Dans les nombres réels, cette équation
         n'a pas de solution.
     </p>
 
+
     <p>
         Pourtant :
     </p>
+
 
     <div class="formule">
 
@@ -1523,6 +1966,7 @@
         x = i&nbsp;&nbsp;ou&nbsp;&nbsp;x = −i
 
     </div>
+
 
     <p>
         Les nombres complexes permettent donc
@@ -1569,6 +2013,7 @@
         </div>
 
 
+
         <div class="etape">
 
             <div class="numero">
@@ -1591,6 +2036,7 @@
         </div>
 
 
+
         <div class="etape">
 
             <div class="numero">
@@ -1605,7 +2051,7 @@
 
                 <p>
                     Même lorsqu'une équation n'a pas
-                    de solution réelle, elle possède
+                    de solution réelle, elle peut avoir
                     des solutions complexes.
                 </p>
 
@@ -1633,30 +2079,49 @@
     <div class="retenir">
 
         <div class="retenir-item">
+
             Un complexe s'écrit
             <strong>a + bi</strong>.
+
         </div>
 
+
         <div class="retenir-item">
+
             <strong>i² = −1</strong>.
+
         </div>
 
-        <div class="retenir-item">
-            Le module correspond à une distance.
-        </div>
 
         <div class="retenir-item">
-            L'argument correspond à un angle.
+
+            Le module correspond
+            à une distance.
+
         </div>
 
+
         <div class="retenir-item">
+
+            L'argument correspond
+            à un angle.
+
+        </div>
+
+
+        <div class="retenir-item">
+
             Les complexes peuvent être représentés
             dans un plan.
+
         </div>
 
+
         <div class="retenir-item">
+
             Tout polynôme non constant possède
             au moins une racine complexe.
+
         </div>
 
     </div>
@@ -1692,17 +2157,22 @@
 const inputA =
     document.getElementById("a");
 
+
 const inputB =
     document.getElementById("b");
+
 
 const inputC =
     document.getElementById("c");
 
+
 const inputD =
     document.getElementById("d");
 
+
 const canvas =
     document.getElementById("plan");
+
 
 const ctx =
     canvas.getContext("2d");
@@ -1711,30 +2181,26 @@ const ctx =
 let dernierResultat = null;
 
 
-/*
-    Ces variables permettent de déplacer
-    et zoomer le plan.
-*/
-
 let zoom = 1;
+
 
 let offsetX = 0;
 
+
 let offsetY = 0;
+
 
 let sourisDown = false;
 
+
 let ancienneSourisX = 0;
+
 
 let ancienneSourisY = 0;
 
 
-/*
-    On évite de redessiner inutilement
-    le canvas plusieurs fois de suite.
-*/
-
 let framePlan = null;
+
 
 
 /* =========================================================
@@ -1762,17 +2228,20 @@ function nombres() {
 }
 
 
+
 function arrondir(nombre) {
 
     if (
         Math.abs(
-            nombre - Math.round(nombre)
+            nombre -
+            Math.round(nombre)
         ) < 0.000001
     ) {
 
         return Math.round(nombre);
 
     }
+
 
     return Number(
         nombre.toFixed(2)
@@ -1781,10 +2250,15 @@ function arrondir(nombre) {
 }
 
 
-function complexe(reel, imaginaire) {
+
+function complexe(
+    reel,
+    imaginaire
+) {
 
     reel =
         arrondir(reel);
+
 
     imaginaire =
         arrondir(imaginaire);
@@ -1821,6 +2295,7 @@ function complexe(reel, imaginaire) {
 
         }
 
+
         if (
             imaginaire === -1
         ) {
@@ -1828,6 +2303,7 @@ function complexe(reel, imaginaire) {
             return "-i";
 
         }
+
 
         return imaginaire + "i";
 
@@ -1867,6 +2343,7 @@ function complexe(reel, imaginaire) {
 }
 
 
+
 /* =========================================================
    MODULE
 ========================================================= */
@@ -1882,6 +2359,7 @@ function moduleComplexe(
     );
 
 }
+
 
 
 /* =========================================================
@@ -1902,6 +2380,7 @@ function argumentComplexe(
 
     }
 
+
     return (
         Math.atan2(
             imaginaire,
@@ -1914,6 +2393,7 @@ function argumentComplexe(
     );
 
 }
+
 
 
 /* =========================================================
@@ -2025,12 +2505,12 @@ function effectuerCalcul(
 }
 
 
+
 /* =========================================================
    MISE A JOUR DES TEXTES
 ========================================================= */
 
 function mettreAJourTextes() {
-
 
     const {
         a,
@@ -2040,29 +2520,24 @@ function mettreAJourTextes() {
     } = nombres();
 
 
-    /*
-        z1
-    */
-
     document.getElementById(
         "z1"
     ).textContent =
-        complexe(a, b);
+        complexe(
+            a,
+            b
+        );
 
-
-    /*
-        z2
-    */
 
     document.getElementById(
         "z2"
     ).textContent =
-        complexe(c, d);
+        complexe(
+            c,
+            d
+        );
 
 
-    /*
-        Addition
-    */
 
     const addition =
         effectuerCalcul(
@@ -2084,9 +2559,6 @@ function mettreAJourTextes() {
         );
 
 
-    /*
-        Soustraction
-    */
 
     const soustraction =
         effectuerCalcul(
@@ -2108,9 +2580,6 @@ function mettreAJourTextes() {
         );
 
 
-    /*
-        Multiplication
-    */
 
     const multiplication =
         effectuerCalcul(
@@ -2132,9 +2601,6 @@ function mettreAJourTextes() {
         );
 
 
-    /*
-        Division
-    */
 
     const division =
         effectuerCalcul(
@@ -2169,9 +2635,6 @@ function mettreAJourTextes() {
     }
 
 
-    /*
-        Modules
-    */
 
     document.getElementById(
         "module1"
@@ -2195,9 +2658,6 @@ function mettreAJourTextes() {
         );
 
 
-    /*
-        Arguments
-    */
 
     document.getElementById(
         "argument1"
@@ -2223,8 +2683,9 @@ function mettreAJourTextes() {
 }
 
 
+
 /* =========================================================
-   MISE A JOUR DU CANVAS
+   REDESSIN
 ========================================================= */
 
 function demanderRedessin() {
@@ -2252,6 +2713,7 @@ function demanderRedessin() {
 }
 
 
+
 /* =========================================================
    MISE A JOUR COMPLETE
 ========================================================= */
@@ -2265,14 +2727,14 @@ function mettreAJour() {
 }
 
 
+
 /* =========================================================
-   BOUTONS DE CALCUL
+   CALCULER
 ========================================================= */
 
 function calculer(
     operation
 ) {
-
 
     const {
         a,
@@ -2323,12 +2785,12 @@ function calculer(
 }
 
 
+
 /* =========================================================
    PLAN COMPLEXE
 ========================================================= */
 
 function dessinerPlan() {
-
 
     const {
         a,
@@ -2346,10 +2808,6 @@ function dessinerPlan() {
     );
 
 
-    /*
-        Taille de base.
-    */
-
     const baseEchelle =
         40 * zoom;
 
@@ -2364,11 +2822,13 @@ function dessinerPlan() {
         offsetY;
 
 
-    /*
-        Grille.
-    */
+
+    /* =========================
+       GRILLE
+    ========================= */
 
     ctx.lineWidth = 1;
+
 
     ctx.strokeStyle =
         "rgba(100,116,139,0.18)";
@@ -2381,9 +2841,6 @@ function dessinerPlan() {
         );
 
 
-    /*
-        Lignes verticales.
-    */
 
     for (
         let x = centreX % baseEchelle;
@@ -2408,9 +2865,6 @@ function dessinerPlan() {
     }
 
 
-    /*
-        Lignes horizontales.
-    */
 
     for (
         let y = centreY % baseEchelle;
@@ -2435,9 +2889,6 @@ function dessinerPlan() {
     }
 
 
-    /*
-        Ligne horizontale négative.
-    */
 
     for (
         let x = centreX % baseEchelle;
@@ -2462,9 +2913,6 @@ function dessinerPlan() {
     }
 
 
-    /*
-        Ligne verticale négative.
-    */
 
     for (
         let y = centreY % baseEchelle;
@@ -2489,19 +2937,17 @@ function dessinerPlan() {
     }
 
 
-    /*
-        Axes.
-    */
+
+    /* =========================
+       AXES
+    ========================= */
 
     ctx.strokeStyle =
         "#64748b";
 
+
     ctx.lineWidth = 2;
 
-
-    /*
-        Axe réel.
-    */
 
     ctx.beginPath();
 
@@ -2518,9 +2964,6 @@ function dessinerPlan() {
     ctx.stroke();
 
 
-    /*
-        Axe imaginaire.
-    */
 
     ctx.beginPath();
 
@@ -2537,12 +2980,14 @@ function dessinerPlan() {
     ctx.stroke();
 
 
-    /*
-        Labels.
-    */
+
+    /* =========================
+       LABELS
+    ========================= */
 
     ctx.fillStyle =
         "#94a3b8";
+
 
     ctx.font =
         "14px Arial";
@@ -2562,12 +3007,14 @@ function dessinerPlan() {
     );
 
 
-    /*
-        Graduation.
-    */
+
+    /* =========================
+       GRADUATIONS
+    ========================= */
 
     ctx.fillStyle =
         "#64748b";
+
 
     ctx.font =
         "12px Arial";
@@ -2632,9 +3079,10 @@ function dessinerPlan() {
     }
 
 
-    /*
-        Fonction de conversion.
-    */
+
+    /* =========================
+       CONVERSION
+    ========================= */
 
     function convertir(
         reel,
@@ -2645,20 +3093,23 @@ function dessinerPlan() {
 
             x:
                 centreX +
-                reel * baseEchelle,
+                reel *
+                baseEchelle,
 
             y:
                 centreY -
-                imaginaire * baseEchelle
+                imaginaire *
+                baseEchelle
 
         };
 
     }
 
 
-    /*
-        Dessiner un complexe.
-    */
+
+    /* =========================
+       DESSIN COMPLEXE
+    ========================= */
 
     function dessinerComplexe(
         reel,
@@ -2666,7 +3117,6 @@ function dessinerPlan() {
         couleur,
         nom
     ) {
-
 
         if (
             reel === 0 &&
@@ -2685,15 +3135,13 @@ function dessinerPlan() {
             );
 
 
-        /*
-            Ligne.
-        */
-
         ctx.strokeStyle =
             couleur;
 
+
         ctx.lineWidth =
             3;
+
 
         ctx.beginPath();
 
@@ -2710,12 +3158,10 @@ function dessinerPlan() {
         ctx.stroke();
 
 
-        /*
-            Point.
-        */
 
         ctx.fillStyle =
             couleur;
+
 
         ctx.beginPath();
 
@@ -2730,12 +3176,10 @@ function dessinerPlan() {
         ctx.fill();
 
 
-        /*
-            Label.
-        */
 
         ctx.font =
             "bold 15px Arial";
+
 
         ctx.fillText(
             nom,
@@ -2746,9 +3190,10 @@ function dessinerPlan() {
     }
 
 
-    /*
-        z1
-    */
+
+    /* =========================
+       z1
+    ========================= */
 
     dessinerComplexe(
         a,
@@ -2758,9 +3203,10 @@ function dessinerPlan() {
     );
 
 
-    /*
-        z2
-    */
+
+    /* =========================
+       z2
+    ========================= */
 
     dessinerComplexe(
         c,
@@ -2770,9 +3216,10 @@ function dessinerPlan() {
     );
 
 
-    /*
-        Résultat.
-    */
+
+    /* =========================
+       RESULTAT
+    ========================= */
 
     if (
         dernierResultat !== null
@@ -2790,15 +3237,18 @@ function dessinerPlan() {
 }
 
 
+
 /* =========================================================
    INPUTS
 ========================================================= */
 
 const inputs = [
+
     inputA,
     inputB,
     inputC,
     inputD
+
 ];
 
 
@@ -2814,8 +3264,9 @@ inputs.forEach(
 );
 
 
+
 /* =========================================================
-   ZOOM DU PLAN
+   ZOOM
 ========================================================= */
 
 canvas.addEventListener(
@@ -2857,18 +3308,22 @@ canvas.addEventListener(
 );
 
 
+
 /* =========================================================
-   DEPLACEMENT DU PLAN
+   SOURIS
 ========================================================= */
 
 canvas.addEventListener(
     "mousedown",
     event => {
 
-        sourisDown = true;
+        sourisDown =
+            true;
+
 
         ancienneSourisX =
             event.clientX;
+
 
         ancienneSourisY =
             event.clientY;
@@ -2881,7 +3336,8 @@ window.addEventListener(
     "mouseup",
     () => {
 
-        sourisDown = false;
+        sourisDown =
+            false;
 
     }
 );
@@ -2910,13 +3366,17 @@ canvas.addEventListener(
             ancienneSourisY;
 
 
-        offsetX += dx;
+        offsetX +=
+            dx;
 
-        offsetY += dy;
+
+        offsetY +=
+            dy;
 
 
         ancienneSourisX =
             event.clientX;
+
 
         ancienneSourisY =
             event.clientY;
@@ -2928,8 +3388,9 @@ canvas.addEventListener(
 );
 
 
+
 /* =========================================================
-   SUPPORT TACTILE
+   TACTILE
 ========================================================= */
 
 let toucheX = 0;
@@ -2952,6 +3413,7 @@ canvas.addEventListener(
 
         toucheX =
             event.touches[0].clientX;
+
 
         toucheY =
             event.touches[0].clientY;
@@ -2979,6 +3441,7 @@ canvas.addEventListener(
         const x =
             event.touches[0].clientX;
 
+
         const y =
             event.touches[0].clientY;
 
@@ -2986,13 +3449,17 @@ canvas.addEventListener(
         offsetX +=
             x - toucheX;
 
+
         offsetY +=
             y - toucheY;
 
 
-        toucheX = x;
+        toucheX =
+            x;
 
-        toucheY = y;
+
+        toucheY =
+            y;
 
 
         demanderRedessin();
@@ -3002,6 +3469,7 @@ canvas.addEventListener(
         passive: true
     }
 );
+
 
 
 /* =========================================================
